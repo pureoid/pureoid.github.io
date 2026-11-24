@@ -1,0 +1,1335 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>小野猫主播kiki - 官方视频门户|原创高清内容与创作者社区</title>
+<meta name="description" content="小野猫主播kiki官方网站，官方视频门户与创作者社区，提供原创高清直播回放、精品内容、创作者故事与粉丝互动，持续运营的高品质视频品牌平台。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b1033'/%3E%3Ccircle cx='24' cy='28' r='9' fill='%23ff5fa2'/%3E%3Ccircle cx='42' cy='28' r='9' fill='%234ee0d0'/%3E%3Cpath d='M14 46c6 8 30 8 36 0' stroke='%23ffd166' stroke-width='4' stroke-linecap='round' fill='none'/%3E%3C/svg%3E">
+<style>
+:root{
+  --kiki-bg:#120b22;
+  --kiki-bg-2:#1b1033;
+  --kiki-panel:#241642;
+  --kiki-panel-2:#2c1b50;
+  --kiki-line:rgba(255,255,255,.10);
+  --kiki-line-2:rgba(255,255,255,.18);
+  --kiki-text:#f3eefc;
+  --kiki-muted:#b3a7cc;
+  --kiki-pink:#ff5fa2;
+  --kiki-teal:#4ee0d0;
+  --kiki-yellow:#ffd166;
+  --kiki-violet:#a78bfa;
+  --kiki-radius:18px;
+  --kiki-sticky:112px;
+  --kiki-shadow:0 18px 50px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:var(--kiki-sticky)}
+body{
+  margin:0;
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(167,139,250,.22), transparent 60%),
+    radial-gradient(700px 420px at 0% 10%, rgba(255,95,162,.16), transparent 60%),
+    var(--kiki-bg);
+  color:var(--kiki-text);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+h1,h2,h3,h4{margin:0 0 .6em;line-height:1.3;letter-spacing:.01em}
+p{margin:0 0 1em}
+ul,ol{margin:0 0 1em;padding-left:1.2em}
+svg{max-width:100%}
+
+.kiki-wrap{width:min(1180px,92vw);margin:0 auto}
+
+/* ============ 吸顶：公告 + 页头 ============ */
+.kiki-sticky-shell{
+  position:sticky;top:0;z-index:60;
+  backdrop-filter:blur(14px);
+  background:rgba(18,11,34,.92);
+  border-bottom:1px solid var(--kiki-line);
+}
+.kiki-announce{
+  display:flex;align-items:center;gap:14px;
+  padding:9px 0;
+  border-bottom:1px dashed rgba(255,95,162,.35);
+}
+.kiki-announce__badge{
+  flex:none;
+  font-size:12px;font-weight:700;letter-spacing:.12em;
+  padding:3px 12px;border-radius:999px;
+  background:linear-gradient(120deg,var(--kiki-pink),#ff8ec0);
+  color:#2a0a1a;white-space:nowrap;
+}
+.kiki-announce__track{
+  position:relative;flex:1;overflow:hidden;height:22px;
+}
+.kiki-announce__item{
+  position:absolute;inset:0;
+  font-size:13px;color:#e3d9f7;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .45s ease,transform .45s ease;
+}
+.kiki-announce__item.is-on{opacity:1;transform:none}
+.kiki-announce__item em{color:var(--kiki-teal);font-style:normal}
+.kiki-announce__item b{color:var(--kiki-yellow);font-weight:600}
+
+.kiki-header{
+  display:flex;align-items:center;gap:22px;
+  padding:14px 0;
+}
+.kiki-brand{display:flex;align-items:center;gap:12px;flex:none}
+.kiki-brand__mark{
+  width:42px;height:42px;border-radius:13px;
+  background:conic-gradient(from 210deg,#ff5fa2,#ffd166,#4ee0d0,#a78bfa,#ff5fa2);
+  display:grid;place-items:center;
+  font-weight:800;color:#120b22;font-size:18px;
+  box-shadow:0 0 0 1px rgba(255,255,255,.2),0 10px 24px rgba(255,95,162,.35);
+}
+.kiki-brand__text{display:flex;flex-direction:column;line-height:1.2}
+.kiki-brand__name{font-size:18px;font-weight:800;letter-spacing:.02em}
+.kiki-brand__sub{font-size:11px;color:var(--kiki-muted);letter-spacing:.24em}
+.kiki-nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.kiki-nav a{
+  font-size:14px;color:#d8cdf0;padding:8px 13px;border-radius:11px;
+  transition:.22s;
+}
+.kiki-nav a:hover,.kiki-nav a:focus-visible{background:rgba(167,139,250,.18);color:#fff;outline:none}
+.kiki-search{
+  position:relative;flex:none;display:flex;align-items:center;
+}
+.kiki-search input{
+  width:200px;padding:9px 14px 9px 34px;
+  border-radius:12px;border:1px solid var(--kiki-line-2);
+  background:rgba(255,255,255,.05);color:var(--kiki-text);
+  font-size:13px;outline:none;transition:.25s;
+}
+.kiki-search input:focus{width:240px;border-color:var(--kiki-pink);background:rgba(255,95,162,.10)}
+.kiki-search__icon{position:absolute;left:11px;top:50%;transform:translateY(-50%);opacity:.7;pointer-events:none}
+.kiki-search__tip{
+  position:absolute;top:calc(100% + 8px);right:0;width:280px;
+  background:#231543;border:1px solid var(--kiki-line-2);border-radius:14px;
+  padding:12px 14px;font-size:12.5px;color:#d5c9ee;
+  box-shadow:var(--kiki-shadow);display:none;z-index:70;
+}
+.kiki-search__tip.is-open{display:block}
+.kiki-search__tip strong{color:var(--kiki-yellow)}
+.kiki-burger{
+  display:none;flex:none;width:42px;height:42px;border-radius:12px;
+  border:1px solid var(--kiki-line-2);background:rgba(255,255,255,.04);color:#fff;
+  font-size:18px;
+}
+.kiki-mobile-nav{display:none;padding:0 0 14px}
+.kiki-mobile-nav.is-open{display:block}
+.kiki-mobile-nav a{
+  display:block;padding:11px 14px;border-radius:12px;font-size:14.5px;
+  background:rgba(255,255,255,.04);margin-bottom:8px;
+}
+.kiki-mobile-nav a:active{background:rgba(255,95,162,.22)}
+
+/* ============ 通用区块 ============ */
+.kiki-section{padding:64px 0}
+.kiki-section--tight{padding:44px 0}
+.kiki-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;letter-spacing:.22em;color:var(--kiki-teal);
+  text-transform:uppercase;margin-bottom:12px;
+}
+.kiki-eyebrow::before{content:"";width:26px;height:1px;background:var(--kiki-teal)}
+.kiki-h2{font-size:clamp(22px,3vw,32px);font-weight:800}
+.kiki-h2 .kiki-h2__dot{color:var(--kiki-pink)}
+.kiki-lead{color:var(--kiki-muted);max-width:76ch}
+.kiki-keyword{color:var(--kiki-pink);font-weight:600}
+.kiki-chip{
+  display:inline-block;font-size:12px;padding:3px 11px;border-radius:999px;
+  background:rgba(78,224,208,.14);color:var(--kiki-teal);
+  border:1px solid rgba(78,224,208,.28);margin:0 6px 6px 0;white-space:nowrap;
+}
+.kiki-chip--pink{background:rgba(255,95,162,.14);color:#ffb3d3;border-color:rgba(255,95,162,.3)}
+.kiki-chip--violet{background:rgba(167,139,250,.16);color:#cbb9ff;border-color:rgba(167,139,250,.32)}
+.kiki-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:12px;border:1px solid transparent;
+  font-size:14px;font-weight:600;transition:.22s;background:none;color:inherit;
+}
+.kiki-btn--primary{
+  background:linear-gradient(120deg,var(--kiki-pink),#ff8ec0);
+  color:#2a0a1a;box-shadow:0 10px 26px rgba(255,95,162,.32);
+}
+.kiki-btn--primary:hover{transform:translateY(-2px);box-shadow:0 16px 34px rgba(255,95,162,.42)}
+.kiki-btn--ghost{border-color:var(--kiki-line-2);color:#e5dcf7}
+.kiki-btn--ghost:hover{border-color:var(--kiki-teal);color:var(--kiki-teal)}
+.kiki-btn--mini{padding:6px 13px;font-size:12.5px;border-radius:9px;border:1px solid var(--kiki-line-2);color:#d7cbef;background:rgba(255,255,255,.03)}
+.kiki-btn--mini:hover{border-color:var(--kiki-pink);color:var(--kiki-pink)}
+.kiki-btn--mini.is-active{border-color:var(--kiki-pink);color:var(--kiki-pink);background:rgba(255,95,162,.14)}
+
+/* ============ 首屏 ============ */
+.kiki-hero{padding:56px 0 24px}
+.kiki-hero__grid{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+  gap:44px;align-items:center;
+}
+.kiki-hero__tag{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;padding:6px 14px;border-radius:999px;
+  border:1px solid rgba(255,209,102,.4);color:var(--kiki-yellow);
+  background:rgba(255,209,102,.09);margin-bottom:20px;
+}
+.kiki-hero__tag i{width:7px;height:7px;border-radius:50%;background:var(--kiki-yellow);animation:kiki-pulse 1.8s infinite}
+@keyframes kiki-pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
+.kiki-hero h1{
+  font-size:clamp(36px,6vw,66px);font-weight:900;letter-spacing:-.01em;
+  background:linear-gradient(115deg,#fff 10%,#ffc4de 48%,#9df3ea 92%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  margin-bottom:16px;
+}
+.kiki-hero__slogan{font-size:clamp(16px,2vw,19px);color:#e7ddf6;margin-bottom:14px;font-weight:600}
+.kiki-hero__intro{color:var(--kiki-muted);font-size:15px;max-width:56ch}
+.kiki-hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0 26px}
+.kiki-hero__stats{display:flex;flex-wrap:wrap;gap:10px 34px;border-top:1px solid var(--kiki-line);padding-top:20px}
+.kiki-stat__num{font-size:26px;font-weight:800;color:#fff;font-variant-numeric:tabular-nums}
+.kiki-stat__num small{font-size:13px;color:var(--kiki-teal);margin-left:3px;font-weight:600}
+.kiki-stat__label{font-size:12px;color:var(--kiki-muted);letter-spacing:.08em}
+.kiki-hero__visual{position:relative}
+.kiki-hero__frame{
+  border-radius:24px;overflow:hidden;border:1px solid var(--kiki-line-2);
+  box-shadow:var(--kiki-shadow);position:relative;background:#1a1030;
+}
+.kiki-hero__frame img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.kiki-hero__live{
+  position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:8px;
+  background:rgba(20,10,30,.78);border:1px solid rgba(255,95,162,.5);
+  padding:5px 12px;border-radius:999px;font-size:12px;color:#ffd0e5;backdrop-filter:blur(6px);
+}
+.kiki-hero__live i{width:8px;height:8px;border-radius:50%;background:var(--kiki-pink);animation:kiki-pulse 1.4s infinite}
+.kiki-hero__float{
+  position:absolute;right:-10px;bottom:-18px;
+  background:#241642;border:1px solid var(--kiki-line-2);border-radius:16px;
+  padding:13px 18px;box-shadow:var(--kiki-shadow);
+  display:flex;gap:14px;align-items:center;font-size:12.5px;color:#ddd0f4;
+}
+.kiki-hero__float b{display:block;font-size:17px;color:var(--kiki-yellow)}
+
+/* ============ 焦点内容 ============ */
+.kiki-spotlight__grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:26px;align-items:start}
+.kiki-focus{
+  border-radius:var(--kiki-radius);overflow:hidden;border:1px solid var(--kiki-line-2);
+  background:#1d1236;transition:.28s;
+}
+.kiki-focus:hover{transform:translateY(-4px);border-color:rgba(255,95,162,.45)}
+.kiki-focus img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.kiki-focus__body{padding:20px 22px 22px}
+.kiki-focus__body h3{font-size:20px;margin-bottom:9px}
+.kiki-focus__body p{font-size:14px;color:var(--kiki-muted);margin-bottom:14px}
+.kiki-meta{display:flex;flex-wrap:wrap;gap:14px;font-size:12.5px;color:#a99bc6;align-items:center;margin-bottom:14px}
+.kiki-meta span{display:inline-flex;align-items:center;gap:5px}
+.kiki-meta b{color:#e7dcf8;font-weight:600}
+.kiki-actions{display:flex;flex-wrap:wrap;gap:9px}
+.kiki-side-list{display:flex;flex-direction:column;gap:12px}
+.kiki-side-item{
+  display:grid;grid-template-columns:74px minmax(0,1fr);gap:14px;
+  background:#1c1134;border:1px solid var(--kiki-line);border-radius:14px;padding:12px;
+  transition:.24s;
+}
+.kiki-side-item:hover{border-color:rgba(78,224,208,.42);transform:translateX(3px)}
+.kiki-side-item img{width:74px;height:56px;object-fit:cover;border-radius:9px}
+.kiki-side-item h4{font-size:14.5px;margin-bottom:5px}
+.kiki-side-item p{font-size:12.5px;color:var(--kiki-muted);margin-bottom:6px;line-height:1.55}
+.kiki-side-item .kiki-meta{margin:0;font-size:11.5px;gap:10px}
+
+/* ============ 视频流 ============ */
+.kiki-video-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.kiki-video-card{
+  background:linear-gradient(160deg,#231543,#1a1030);
+  border:1px solid var(--kiki-line);border-radius:16px;padding:20px;
+  display:flex;flex-direction:column;transition:.26s;
+}
+.kiki-video-card:hover{transform:translateY(-4px);border-color:rgba(167,139,250,.5);box-shadow:0 16px 34px rgba(0,0,0,.32)}
+.kiki-video-card__top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:6px}
+.kiki-video-card h3{font-size:16.5px;margin-bottom:8px}
+.kiki-video-card__num{
+  flex:none;font-size:12px;font-weight:800;color:var(--kiki-yellow);
+  background:rgba(255,209,102,.12);border:1px solid rgba(255,209,102,.3);
+  width:26px;height:26px;border-radius:8px;display:grid;place-items:center;
+}
+.kiki-video-card p{font-size:13.5px;color:#bfb2d8;margin-bottom:12px}
+.kiki-video-card__tail{margin-top:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.kiki-video-card__tail .kiki-meta{margin:0;font-size:11.5px;gap:11px;width:100%}
+.kiki-tag-row{margin-bottom:12px}
+
+/* ============ 专题 ============ */
+.kiki-topics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.kiki-topic{
+  border:1px solid var(--kiki-line);border-radius:16px;overflow:hidden;
+  background:#1c1134;display:flex;flex-direction:column;transition:.26s;
+}
+.kiki-topic:hover{border-color:rgba(78,224,208,.45);transform:translateY(-4px)}
+.kiki-topic__head{padding:18px 20px 12px;border-bottom:1px dashed var(--kiki-line)}
+.kiki-topic__head h3{font-size:16.5px;margin-bottom:8px}
+.kiki-topic__head p{font-size:12.5px;color:var(--kiki-muted);margin:0 0 10px}
+.kiki-topic__status{font-size:11.5px;color:var(--kiki-teal);display:inline-flex;gap:6px;align-items:center}
+.kiki-topic__status i{width:6px;height:6px;border-radius:50%;background:var(--kiki-teal)}
+.kiki-topic ul{list-style:none;padding:12px 20px 18px;margin:0;display:flex;flex-direction:column;gap:9px}
+.kiki-topic li{font-size:13px;color:#cfc3e7;display:flex;gap:8px;line-height:1.6}
+.kiki-topic li::before{content:"▸";color:var(--kiki-pink);flex:none}
+.kiki-topic img{width:100%;aspect-ratio:16/9;object-fit:cover}
+
+/* ============ 深度解析 ============ */
+.kiki-deep{background:linear-gradient(180deg,rgba(255,95,162,.07),rgba(78,224,208,.05));border-top:1px solid var(--kiki-line);border-bottom:1px solid var(--kiki-line)}
+.kiki-deep__inner{max-width:82ch}
+.kiki-deep h3{margin-top:1.4em;color:#fff;font-size:17.5px}
+.kiki-deep p{color:#c9bce0;font-size:14.5px}
+.kiki-deep .kiki-note{
+  border-left:3px solid var(--kiki-teal);padding:10px 0 10px 16px;margin:18px 0;
+  color:#d7cbf0;font-size:14px;background:rgba(78,224,208,.06);border-radius:0 12px 12px 0;
+}
+
+/* ============ 作者矩阵 ============ */
+.kiki-authors{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.kiki-author{
+  display:grid;grid-template-columns:64px minmax(0,1fr);gap:16px;
+  border:1px solid var(--kiki-line);border-radius:16px;padding:18px;background:#1b1033;
+  transition:.26s;
+}
+.kiki-author:hover{border-color:rgba(255,209,102,.4);transform:translateY(-3px)}
+.kiki-avatar{
+  width:64px;height:64px;border-radius:50%;display:grid;place-items:center;
+  font-size:22px;font-weight:800;color:#170d2b;flex:none;
+  box-shadow:0 0 0 2px rgba(255,255,255,.14);
+}
+.kiki-avatar--pink{background:linear-gradient(140deg,#ff9cc4,#ff5fa2)}
+.kiki-avatar--teal{background:linear-gradient(140deg,#9df3ea,#4ee0d0)}
+.kiki-avatar--violet{background:linear-gradient(140deg,#cbb9ff,#a78bfa)}
+.kiki-avatar--yellow{background:linear-gradient(140deg,#ffe6a6,#ffd166)}
+.kiki-avatar--blue{background:linear-gradient(140deg,#a9d4ff,#5b9cf8)}
+.kiki-avatar--green{background:linear-gradient(140deg,#b6f0c2,#54d17a)}
+.kiki-author h3{font-size:16px;margin-bottom:4px}
+.kiki-author__field{font-size:12px;color:var(--kiki-teal);margin-bottom:8px}
+.kiki-author p{font-size:13px;color:#bfb2d8;margin-bottom:10px}
+.kiki-author__nums{display:flex;gap:16px;font-size:12px;color:#a99bc6}
+.kiki-author__nums b{color:#fff;font-weight:700}
+
+/* ============ 评价 ============ */
+.kiki-voices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.kiki-voice{
+  background:#1d1236;border:1px solid var(--kiki-line);border-radius:14px;padding:18px;
+  transition:.24s;
+}
+.kiki-voice:hover{border-color:rgba(167,139,250,.4)}
+.kiki-voice__head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.kiki-voice__head .kiki-avatar{width:36px;height:36px;font-size:14px;box-shadow:none}
+.kiki-voice__head strong{font-size:13.5px}
+.kiki-voice__head span{font-size:11.5px;color:#9c8fba;margin-left:auto}
+.kiki-voice p{font-size:13.5px;color:#cdc0e6;margin:0}
+.kiki-voice--quote{border-left:3px solid var(--kiki-pink)}
+
+/* ============ 数据榜单 ============ */
+.kiki-board{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.kiki-board__col{border:1px solid var(--kiki-line);border-radius:16px;padding:18px;background:#1a1030}
+.kiki-board__col h3{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.kiki-board__col h3 span{font-size:11px;color:var(--kiki-yellow);border:1px solid rgba(255,209,102,.35);padding:1px 8px;border-radius:999px}
+.kiki-board ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;counter-reset:k}
+.kiki-board li{display:grid;grid-template-columns:20px minmax(0,1fr) auto;gap:9px;font-size:13px;color:#d3c7ec;align-items:center}
+.kiki-board li::before{counter-increment:k;content:counter(k);font-weight:800;color:#8f7fb5;font-size:12px}
+.kiki-board li b{color:#fff;font-weight:600}
+.kiki-board li small{color:var(--kiki-teal);font-size:11.5px}
+
+/* ============ FAQ ============ */
+.kiki-faq{display:flex;flex-direction:column;gap:10px;max-width:900px}
+.kiki-faq details{
+  border:1px solid var(--kiki-line);border-radius:13px;background:#1b1033;padding:0;overflow:hidden;
+}
+.kiki-faq summary{
+  list-style:none;cursor:pointer;padding:15px 18px;font-size:14.5px;font-weight:600;
+  display:flex;justify-content:space-between;gap:14px;align-items:center;
+}
+.kiki-faq summary::-webkit-details-marker{display:none}
+.kiki-faq summary::after{content:"+";color:var(--kiki-pink);font-size:19px;font-weight:400;transition:.2s}
+.kiki-faq details[open] summary::after{transform:rotate(45deg)}
+.kiki-faq details[open] summary{color:var(--kiki-teal)}
+.kiki-faq__body{padding:0 18px 16px;font-size:13.5px;color:#bfb2d8}
+
+/* ============ 动态/合作 ============ */
+.kiki-two-col{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px;align-items:start}
+.kiki-timeline{display:flex;flex-direction:column;gap:0}
+.kiki-timeline__item{
+  position:relative;padding:0 0 22px 26px;border-left:1px solid var(--kiki-line-2);
+}
+.kiki-timeline__item:last-child{border-left-color:transparent;padding-bottom:0}
+.kiki-timeline__item::before{
+  content:"";position:absolute;left:-5px;top:5px;width:9px;height:9px;border-radius:50%;
+  background:var(--kiki-pink);box-shadow:0 0 0 4px rgba(255,95,162,.16);
+}
+.kiki-timeline__date{font-size:11.5px;color:var(--kiki-teal);letter-spacing:.1em;margin-bottom:4px}
+.kiki-timeline__item h3{font-size:14.5px;margin-bottom:4px}
+.kiki-timeline__item p{font-size:13px;color:#bfb2d8;margin:0}
+.kiki-partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.kiki-partner{
+  border:1px solid var(--kiki-line);border-radius:13px;padding:14px 16px;background:#1c1134;
+  display:flex;align-items:center;gap:12px;font-size:13px;color:#d4c8ec;
+}
+.kiki-partner__logo{
+  width:34px;height:34px;border-radius:10px;flex:none;display:grid;place-items:center;
+  font-size:13px;font-weight:800;color:#170d2b;
+}
+.kiki-partner small{display:block;font-size:11px;color:#9c8fba}
+
+/* ============ 投稿 ============ */
+.kiki-submit{
+  border:1px solid rgba(255,95,162,.35);border-radius:var(--kiki-radius);
+  background:linear-gradient(135deg,rgba(255,95,162,.13),rgba(78,224,208,.09));
+  padding:28px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:22px;align-items:center;
+}
+.kiki-submit h2{font-size:22px;margin-bottom:8px}
+.kiki-submit p{font-size:13.5px;color:#cdc0e6;margin:0;max-width:60ch}
+
+/* ============ 页脚 ============ */
+.kiki-footer{
+  border-top:1px solid var(--kiki-line);background:rgba(14,8,26,.85);
+  padding:48px 0 26px;margin-top:20px;
+}
+.kiki-footer__grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;margin-bottom:34px}
+.kiki-footer h4{font-size:13.5px;color:#fff;margin-bottom:14px;letter-spacing:.06em}
+.kiki-footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px}
+.kiki-footer li,.kiki-footer p{font-size:12.5px;color:#9c8fba;line-height:1.8}
+.kiki-footer a:hover{color:var(--kiki-pink)}
+.kiki-footer__bottom{
+  border-top:1px solid var(--kiki-line);padding-top:18px;
+  display:flex;flex-wrap:wrap;gap:10px 22px;justify-content:space-between;
+  font-size:12px;color:#8577a6;
+}
+
+/* ============ 回到顶部 / Toast / 弹窗 ============ */
+.kiki-top{
+  position:fixed;right:22px;bottom:24px;width:46px;height:46px;border-radius:14px;
+  display:grid;place-items:center;font-size:17px;
+  background:linear-gradient(140deg,var(--kiki-pink),#ff8ec0);color:#2a0a1a;
+  border:none;box-shadow:0 12px 26px rgba(255,95,162,.4);
+  opacity:0;pointer-events:none;transform:translateY(12px);transition:.3s;z-index:80;
+}
+.kiki-top.is-on{opacity:1;pointer-events:auto;transform:none}
+.kiki-toast{
+  position:fixed;left:50%;bottom:34px;transform:translate(-50%,20px);
+  background:#2c1b50;border:1px solid var(--kiki-line-2);color:#f3eefc;
+  padding:11px 22px;border-radius:12px;font-size:13.5px;
+  box-shadow:var(--kiki-shadow);opacity:0;pointer-events:none;transition:.3s;z-index:95;
+}
+.kiki-toast.is-on{opacity:1;transform:translate(-50%,0)}
+.kiki-modal{
+  position:fixed;inset:0;z-index:90;display:none;
+  background:rgba(8,4,18,.72);backdrop-filter:blur(6px);
+  padding:20px;overflow-y:auto;
+}
+.kiki-modal.is-open{display:grid;place-items:center}
+.kiki-modal__box{
+  width:min(560px,100%);background:#221440;border:1px solid var(--kiki-line-2);
+  border-radius:20px;padding:26px;box-shadow:var(--kiki-shadow);
+}
+.kiki-modal__box h3{font-size:19px;margin-bottom:10px}
+.kiki-modal__box p{font-size:13.5px;color:#bfb2d8}
+.kiki-modal__close{
+  float:right;background:rgba(255,255,255,.06);border:1px solid var(--kiki-line-2);
+  color:#fff;width:30px;height:30px;border-radius:9px;font-size:15px;
+}
+.kiki-form{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.kiki-form label{font-size:12.5px;color:#b8aad4}
+.kiki-form input,.kiki-form textarea{
+  width:100%;padding:10px 13px;border-radius:10px;margin-top:5px;
+  border:1px solid var(--kiki-line-2);background:rgba(255,255,255,.05);
+  color:#fff;font-size:13.5px;outline:none;font-family:inherit;
+}
+.kiki-form input:focus,.kiki-form textarea:focus{border-color:var(--kiki-pink)}
+.kiki-like.is-on,.kiki-fav.is-on{color:var(--kiki-pink);border-color:var(--kiki-pink);background:rgba(255,95,162,.16)}
+
+/* ============ 响应式 ============ */
+@media (max-width:1000px){
+  .kiki-hero__grid,.kiki-spotlight__grid,.kiki-two-col{grid-template-columns:minmax(0,1fr)}
+  .kiki-topics,.kiki-board{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .kiki-footer__grid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:820px){
+  .kiki-nav,.kiki-search{display:none}
+  .kiki-burger{display:grid;place-items:center;margin-left:auto}
+  .kiki-video-list,.kiki-authors,.kiki-voices{grid-template-columns:minmax(0,1fr)}
+  .kiki-submit{grid-template-columns:minmax(0,1fr)}
+  .kiki-hero__float{position:static;margin-top:14px;display:inline-flex}
+}
+@media (max-width:620px){
+  .kiki-topics,.kiki-board,.kiki-footer__grid,.kiki-partners{grid-template-columns:minmax(0,1fr)}
+  .kiki-announce__badge{display:none}
+  .kiki-hero{padding-top:34px}
+  .kiki-section{padding:44px 0}
+  .kiki-author{grid-template-columns:52px minmax(0,1fr)}
+  .kiki-avatar{width:52px;height:52px;font-size:18px}
+}
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<div class="kiki-sticky-shell">
+  <div class="kiki-announce">
+    <span class="kiki-announce__badge">官方公告</span>
+    <div class="kiki-announce__track" id="kikiAnnounceTrack">
+      <div class="kiki-announce__item is-on">11月22日 <b>《夜航小野猫》第 48 期</b> 直播回放已上线，<em>4K 高清修复版</em>同步开放观看。</div>
+      <div class="kiki-announce__item">「冬夜共创企划」投稿通道开启，截止 <b>12月20日</b>，入选作品将获得官方首页推荐位。</div>
+      <div class="kiki-announce__item">创作者扶持计划第二季启动，新增 <em>新人榜</em> 与 <em>口碑榜</em> 双通道评选。</div>
+    </div>
+  </div>
+  <div class="kiki-wrap">
+    <header class="kiki-header">
+      <a class="kiki-brand" href="#kikiTop" aria-label="小野猫主播kiki 官方首页">
+        <span class="kiki-brand__mark">K</span>
+        <span class="kiki-brand__text">
+          <span class="kiki-brand__name">小野猫主播kiki</span>
+          <span class="kiki-brand__sub">OFFICIAL VIDEO</span>
+        </span>
+      </a>
+      <nav class="kiki-nav" aria-label="主导航">
+        <a href="#kikiSpotlight">焦点内容</a>
+        <a href="#kikiVideos">视频精选</a>
+        <a href="#kikiTopics">专题企划</a>
+        <a href="#kikiDeep">品牌深度</a>
+        <a href="#kikiAuthors">创作者</a>
+        <a href="#kikiVoices">口碑</a>
+        <a href="#kikiFaq">帮助</a>
+      </nav>
+      <div class="kiki-search">
+        <span class="kiki-search__icon" aria-hidden="true">⌕</span>
+        <input id="kikiSearchInput" type="search" placeholder="搜索视频 / 创作者" aria-label="站内搜索">
+        <div class="kiki-search__tip" id="kikiSearchTip" role="status" aria-live="polite"></div>
+      </div>
+      <button class="kiki-burger" id="kikiBurger" aria-label="展开导航" aria-expanded="false">☰</button>
+    </header>
+    <div class="kiki-mobile-nav" id="kikiMobileNav">
+      <a href="#kikiSpotlight">焦点内容</a>
+      <a href="#kikiVideos">视频精选</a>
+      <a href="#kikiTopics">专题企划</a>
+      <a href="#kikiDeep">品牌深度</a>
+      <a href="#kikiAuthors">创作者</a>
+      <a href="#kikiVoices">口碑</a>
+      <a href="#kikiFaq">帮助中心</a>
+    </div>
+  </div>
+</div>
+
+<main id="kikiTop">
+
+  <!-- 首屏 -->
+  <section class="kiki-hero">
+    <div class="kiki-wrap kiki-hero__grid">
+      <div>
+        <span class="kiki-hero__tag"><i></i>官方网站 · 原创高清 · 持续运营中</span>
+        <h1>小野猫主播kiki</h1>
+        <p class="kiki-hero__slogan">在夜色里发光的声音，值得被认真记录。</p>
+        <p class="kiki-hero__intro">小野猫主播kiki 官方网站，是围绕主播本人建立的企业级视频内容门户与创作者社区。我们以原创、正版、高清为底线，把每一场直播、每一次对谈、每一段深夜陪伴整理成可回看的精品内容，同时为同领域创作者提供展示与成长的舞台，让真实与温暖在屏幕之间持续流动。</p>
+        <div class="kiki-hero__cta">
+          <a class="kiki-btn kiki-btn--primary" href="#kikiVideos">观看最新视频 →</a>
+          <a class="kiki-btn kiki-btn--ghost" href="#kikiAuthors">认识创作者</a>
+          <button class="kiki-btn kiki-btn--ghost" data-kiki-open="submit">投稿入口</button>
+          <button class="kiki-btn kiki-btn--ghost" data-kiki-copy="kiki-home">复制官网链接</button>
+        </div>
+        <div class="kiki-hero__stats">
+          <div class="kiki-stat">
+            <div class="kiki-stat__num" data-kiki-count="1286">0<small>期</small></div>
+            <div class="kiki-stat__label">累计原创节目</div>
+          </div>
+          <div class="kiki-stat">
+            <div class="kiki-stat__num" data-kiki-count="342">0<small>万</small></div>
+            <div class="kiki-stat__label">社区关注用户</div>
+          </div>
+          <div class="kiki-stat">
+            <div class="kiki-stat__num" data-kiki-count="96">0<small>%</small></div>
+            <div class="kiki-stat__label">用户口碑好评率</div>
+          </div>
+        </div>
+      </div>
+      <div class="kiki-hero__visual">
+        <div class="kiki-hero__frame">
+          <span class="kiki-hero__live"><i></i>今夜 21:00 开播</span>
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 500'%3E%3Cdefs%3E%3ClinearGradient id='a' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23241545'/%3E%3Cstop offset='.55' stop-color='%23351c5e'/%3E%3Cstop offset='1' stop-color='%23140b28'/%3E%3C/linearGradient%3E%3CradialGradient id='b' cx='.5' cy='.4' r='.6'%3E%3Cstop offset='0' stop-color='%23ff5fa2' stop-opacity='.85'/%3E%3Cstop offset='1' stop-color='%23ff5fa2' stop-opacity='0'/%3E%3C/radialGradient%3E%3CradialGradient id='c' cx='.5' cy='.5' r='.5'%3E%3Cstop offset='0' stop-color='%234ee0d0' stop-opacity='.7'/%3E%3Cstop offset='1' stop-color='%234ee0d0' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect width='800' height='500' fill='url(%23a)'/%3E%3Ccircle cx='520' cy='190' r='210' fill='url(%23b)'/%3E%3Ccircle cx='260' cy='330' r='170' fill='url(%23c)'/%3E%3Cg stroke='%23ffffff' stroke-opacity='.10' stroke-width='1'%3E%3Cpath d='M0 380 Q200 300 400 360 T800 320'/%3E%3Cpath d='M0 430 Q220 350 430 410 T800 380'/%3E%3Cpath d='M0 330 Q190 260 390 310 T800 270'/%3E%3C/g%3E%3Cg fill='none' stroke='%23ffd166' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M120 200 q-22 -46 12 -64 q30 -16 40 14'/%3E%3Cpath d='M660 150 q26 -30 52 -10 q22 18 -6 40'/%3E%3C/g%3E%3Cg fill='%23ffffff' fill-opacity='.85'%3E%3Ccircle cx='150' cy='120' r='2.6'/%3E%3Ccircle cx='330' cy='80' r='2'/%3E%3Ccircle cx='600' cy='90' r='2.4'/%3E%3Ccircle cx='700' cy='300' r='2'/%3E%3Ccircle cx='220' cy='230' r='1.8'/%3E%3Ccircle cx='430' cy='170' r='2.2'/%3E%3C/g%3E%3Cg%3E%3Crect x='300' y='300' width='210' height='118' rx='16' fill='%231d1236' fill-opacity='.86' stroke='%23ffffff' stroke-opacity='.22'/%3E%3Ccircle cx='340' cy='344' r='18' fill='%23ff5fa2'/%3E%3Crect x='368' y='330' width='112' height='9' rx='4.5' fill='%23ffffff' fill-opacity='.55'/%3E%3Crect x='368' y='348' width='76' height='8' rx='4' fill='%23ffffff' fill-opacity='.28'/%3E%3Crect x='322' y='380' width='166' height='8' rx='4' fill='%234ee0d0' fill-opacity='.55'/%3E%3C/g%3E%3C/svg%3E" width="800" height="500" alt="小野猫主播kiki 官方首屏夜航直播主视觉，紫色舞台光影与节目卡片">
+        </div>
+        <div class="kiki-hero__float">
+          <div><b>48</b>期直播回放</div>
+          <div><b>4K</b>高清修复</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 焦点内容 -->
+  <section class="kiki-section" id="kikiSpotlight">
+    <div class="kiki-wrap">
+      <span class="kiki-eyebrow">Spotlight</span>
+      <h2 class="kiki-h2">本期焦点<span class="kiki-h2__dot">·</span>小野猫主播kiki 官方精选内容</h2>
+      <p class="kiki-lead">由官方内容团队从每周更新中挑选的重点作品，兼顾直播回放、幕后记录与人物访谈，呈现小野猫主播kiki 作为品牌核心的多元面貌。</p>
+
+      <div class="kiki-spotlight__grid" style="margin-top:26px">
+        <article class="kiki-focus">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='p' x1='0' y1='1' x2='1' y2='0'%3E%3Cstop offset='0' stop-color='%23120b22'/%3E%3Cstop offset='.5' stop-color='%234d216e'/%3E%3Cstop offset='1' stop-color='%23ff5fa2' stop-opacity='.8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23p)'/%3E%3Cg stroke='%23ffffff' stroke-opacity='.12'%3E%3Ccircle cx='620' cy='140' r='150' fill='none'/%3E%3Ccircle cx='620' cy='140' r='105' fill='none'/%3E%3Ccircle cx='620' cy='140' r='62' fill='none'/%3E%3C/g%3E%3Crect x='80' y='250' width='330' height='14' rx='7' fill='%23ffffff' fill-opacity='.6'/%3E%3Crect x='80' y='284' width='230' height='10' rx='5' fill='%23ffffff' fill-opacity='.3'/%3E%3Crect x='80' y='312' width='280' height='10' rx='5' fill='%23ffffff' fill-opacity='.2'/%3E%3Cg fill='%234ee0d0'%3E%3Crect x='80' y='356' width='86' height='26' rx='13' fill-opacity='.28'/%3E%3Crect x='178' y='356' width='104' height='26' rx='13' fill-opacity='.2'/%3E%3C/g%3E%3Ccircle cx='620' cy='140' r='34' fill='%23ffd166' fill-opacity='.9'/%3E%3Cpath d='M610 126 l24 14 -24 14 z' fill='%23120b22'/%3E%3C/svg%3E" width="800" height="450" alt="《夜航小野猫》第48期直播回放封面，紫色环形舞台与播放按钮">
+          <div class="kiki-focus__body">
+            <span class="kiki-chip kiki-chip--pink">直播回放</span><span class="kiki-chip">4K 修复</span>
+            <h3>《夜航小野猫》第 48 期：深夜电台里的十七个提问</h3>
+            <p>两个小时的深夜直播，小野猫主播kiki 用十七个来自社区的真实提问，聊了关于坚持、犹豫与重新出发的故事。官方高清回放完整保留现场氛围，并附上文字版时间轴，方便创作者二次学习与引用。</p>
+            <div class="kiki-meta">
+              <span>作者 <b>小野猫主播kiki</b></span>
+              <span>播放 <b>86.4万</b></span>
+              <span>点赞 <b>4.2万</b></span>
+              <span>收藏 <b>1.9万</b></span>
+            </div>
+            <div class="kiki-actions">
+              <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="3241">♡ 点赞 <b>320</b></button>
+              <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="3241">☆ 收藏</button>
+              <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-48">复制链接</button>
+              <button class="kiki-btn kiki-btn--mini" data-kiki-open="share">分享</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="kiki-side-list">
+          <article class="kiki-side-item">
+            <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 226'%3E%3Cdefs%3E%3ClinearGradient id='s1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%230f2038'/%3E%3Cstop offset='1' stop-color='%234ee0d0' stop-opacity='.75'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='300' height='226' fill='url(%23s1)'/%3E%3Cg stroke='%23ffffff' stroke-opacity='.18'%3E%3Cpath d='M30 170 l60 -70 l48 44 l40 -56 l92 82' fill='none' stroke-width='3'/%3E%3C/g%3E%3Ccircle cx='228' cy='62' r='24' fill='%23ffd166' fill-opacity='.85'/%3E%3Crect x='30' y='190' width='110' height='9' rx='4.5' fill='%23ffffff' fill-opacity='.4'/%3E%3C/svg%3E" width="300" height="226" alt="城市夜行记录系列封面，蓝绿色夜路与远处灯光">
+            <div>
+              <h4>城市夜行记录：把凌晨四点的街讲给你听</h4>
+              <p>小野猫主播kiki 走出直播间的一次城市探索，用镜头记录夜班工作者与清晨的第一盏灯。</p>
+              <div class="kiki-meta"><span>播放 <b>32.1万</b></span><span>口碑 <b>9.4</b></span></div>
+            </div>
+          </article>
+
+          <article class="kiki-side-item">
+            <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 226'%3E%3Crect width='300' height='226' fill='%23231440'/%3E%3Cg fill='none' stroke='%23ff5fa2' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M60 60 q40 -30 80 0 q40 30 80 0'/%3E%3Cpath d='M60 108 q40 -30 80 0 q40 30 80 0' stroke='%23ffd166'/%3E%3Cpath d='M60 156 q40 -30 80 0 q40 30 80 0' stroke='%234ee0d0'/%3E%3C/g%3E%3Crect x='60' y='186' width='120' height='8' rx='4' fill='%23ffffff' fill-opacity='.35'/%3E%3C/svg%3E" width="300" height="226" alt="幕后创作对谈封面，三色声波线条与栏目信息">
+            <div>
+              <h4>幕后对谈：一场直播要准备多少件事</h4>
+              <p>从选题、灯光到弹幕互动节奏，团队首次公开幕后流程，给同领域创作者可复用的经验。</p>
+              <div class="kiki-meta"><span>播放 <b>21.7万</b></span><span>收藏 <b>8600</b></span></div>
+            </div>
+          </article>
+
+          <article class="kiki-side-item">
+            <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 300 226'%3E%3Crect width='300' height='226' fill='%231b1033'/%3E%3Cg%3E%3Crect x='40' y='46' width='220' height='134' rx='14' fill='%232c1b50' stroke='%23ffffff' stroke-opacity='.18'/%3E%3Ccircle cx='88' cy='92' r='20' fill='%23a78bfa'/%3E%3Crect x='122' y='80' width='110' height='10' rx='5' fill='%23ffffff' fill-opacity='.5'/%3E%3Crect x='122' y='100' width='76' height='8' rx='4' fill='%23ffffff' fill-opacity='.26'/%3E%3Crect x='62' y='136' width='176' height='8' rx='4' fill='%234ee0d0' fill-opacity='.5'/%3E%3Crect x='62' y='154' width='120' height='8' rx='4' fill='%23ff5fa2' fill-opacity='.45'/%3E%3C/g%3E%3C/svg%3E" width="300" height="226" alt="社区新人访谈封面，紫色人物卡片与文字条块">
+            <div>
+              <h4>新声量：三位社区创作者的第一次上镜</h4>
+              <p>平台新人扶持企划的记录短片，讲述普通人如何在社区里完成第一次正式表达。</p>
+              <div class="kiki-meta"><span>播放 <b>18.3万</b></span><span>口碑 <b>9.1</b></span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 视频精选 -->
+  <section class="kiki-section kiki-section--tight" id="kikiVideos">
+    <div class="kiki-wrap">
+      <span class="kiki-eyebrow">Video</span>
+      <h2 class="kiki-h2">视频精选<span class="kiki-h2__dot">·</span>本周更新榜单</h2>
+      <p class="kiki-lead">小野猫主播kiki 官方网站每周稳定更新，以下条目按内容类型分组，涵盖直播回放、教程干货、人物访谈与创作幕后。所有视频均为原创正版高清内容，支持社区收藏与分享。</p>
+
+      <div class="kiki-tag-row" style="margin-top:18px">
+        <span class="kiki-chip">直播回放</span>
+        <span class="kiki-chip kiki-chip--pink">人物访谈</span>
+        <span class="kiki-chip kiki-chip--violet">教程干货</span>
+        <span class="kiki-chip">创作幕后</span>
+        <span class="kiki-chip kiki-chip--pink">城市探索</span>
+      </div>
+
+      <div class="kiki-video-list">
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>如何把一场直播做成有记忆点的节目</h3><span class="kiki-video-card__num">01</span></div>
+          <p>从开场三分钟的节奏设计，到弹幕高峰期的情绪承接，小野猫主播kiki 以自己第 40 至 48 期的实战为例，拆解可复用的节目结构。适合刚开始做直播的创作者反复观看。</p>
+          <div class="kiki-meta"><span>作者 <b>小野猫主播kiki</b></span><span>播放 <b>27.6万</b></span><span>点赞 <b>1.4万</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5101">♡ 点赞 <b>140</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5101">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-01">复制链接</button>
+          </div>
+        </article>
+
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>深夜电台：关于「坚持」的十二种回答</h3><span class="kiki-video-card__num">02</span></div>
+          <p>一次没有脚本的电台直播，小野猫主播kiki 读了社区投稿的十二封信，逐封回应。节目采用极简收音与自然环境声，官方提供高清与纯音频两个版本。</p>
+          <div class="kiki-meta"><span>作者 <b>小野猫主播kiki</b></span><span>播放 <b>41.2万</b></span><span>收藏 <b>2.3万</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5102">♡ 点赞 <b>260</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5102">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-02">复制链接</button>
+          </div>
+        </article>
+
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>城市探索：凌晨四点的早餐铺与守夜人</h3><span class="kiki-video-card__num">03</span></div>
+          <p>跟随镜头走进清晨前的街道，记录夜班司机、早餐铺老板与清洁工的日常。小野猫主播kiki 在片中只做倾听者，把镜头交给这些真实的声音。</p>
+          <div class="kiki-meta"><span>作者 <b>小野猫主播kiki × 城市影像组</b></span><span>播放 <b>19.8万</b></span><span>点赞 <b>9800</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5103">♡ 点赞 <b>96</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5103">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-03">复制链接</button>
+          </div>
+        </article>
+
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>设备不贵也能出好声音：入门收音指南</h3><span class="kiki-video-card__num">04</span></div>
+          <p>针对个人创作者，讲解动圈麦与电容麦的取舍、房间简易吸音、直播人声链参数。全部方案控制在千元预算内，附官方参数下载清单。</p>
+          <div class="kiki-meta"><span>作者 <b>技术顾问 阿柯</b></span><span>播放 <b>15.4万</b></span><span>收藏 <b>1.1万</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5104">♡ 点赞 <b>72</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5104">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-04">复制链接</button>
+          </div>
+        </article>
+
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>从弹幕到社群：粉丝关系如何长期经营</h3><span class="kiki-video-card__num">05</span></div>
+          <p>社区运营负责人结合后台数据，讲解如何建立稳定的互动仪式、处理争议、维护真实关系。这篇内容是平台内容生态的重要组成部分，适合中小创作者参考。</p>
+          <div class="kiki-meta"><span>作者 <b>社区运营 林之</b></span><span>播放 <b>12.6万</b></span><span>口碑 <b>9.3</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5105">♡ 点赞 <b>64</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5105">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-05">复制链接</button>
+          </div>
+        </article>
+
+        <article class="kiki-video-card">
+          <div class="kiki-video-card__top"><h3>幕后：一场两小时直播的 14 个岗位</h3><span class="kiki-video-card__num">06</span></div>
+          <p>导播、灯光、音频、场务、内容审核与社群客服，官方团队首次集体出镜，讲述一场直播背后的协作方式与企业级内容标准。</p>
+          <div class="kiki-meta"><span>作者 <b>小野猫主播kiki 官方团队</b></span><span>播放 <b>10.9万</b></span><span>点赞 <b>5300</b></span></div>
+          <div class="kiki-video-card__tail">
+            <button class="kiki-btn kiki-btn--mini kiki-like" data-kiki-like="5106">♡ 点赞 <b>53</b></button>
+            <button class="kiki-btn kiki-btn--mini kiki-fav" data-kiki-fav="5106">☆ 收藏</button>
+            <button class="kiki-btn kiki-btn--mini" data-kiki-copy="video-06">复制链接</button>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 专题企划 -->
+  <section class="kiki-section" id="kikiTopics">
+    <div class="kiki-wrap">
+      <span class="kiki-eyebrow">Series</span>
+      <h2 class="kiki-h2">专题企划<span class="kiki-h2__dot">·</span>持续运营中的内容企划</h2>
+      <p class="kiki-lead">小野猫主播kiki 官方平台以长篇专题的方式组织内容，让分散的更新形成可以回看的脉络。三个企划分别对应人物、城市与创作方法，均在更新中。</p>
+
+      <div class="kiki-topics" style="margin-top:26px">
+        <article class="kiki-topic">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='t1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232a1550'/%3E%3Cstop offset='1' stop-color='%23ff8ec0' stop-opacity='.7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23t1)'/%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.22' stroke-width='2'%3E%3Crect x='90' y='90' width='150' height='180' rx='16'/%3E%3Crect x='270' y='60' width='150' height='180' rx='16'/%3E%3Crect x='450' y='100' width='110' height='150' rx='16'/%3E%3C/g%3E%3Ccircle cx='165' cy='160' r='28' fill='%23ffd166' fill-opacity='.85'/%3E%3Ccircle cx='345' cy='130' r='28' fill='%234ee0d0' fill-opacity='.8'/%3E%3Ccircle cx='505' cy='170' r='22' fill='%23a78bfa' fill-opacity='.85'/%3E%3C/svg%3E" width="640" height="360" alt="人物专题「声音里的她」企划封面，三个紫色人物卡片剪影">
+          <div class="kiki-topic__head">
+            <h3>人物专题 · 声音里的她</h3>
+            <p>聚焦女性创作者与幕后工作者，记录她们如何在镜头前后建立自己的表达方式。</p>
+            <span class="kiki-topic__status"><i></i>更新中 · 已上线 6 期</span>
+          </div>
+          <ul>
+            <li>第 6 期：一位音频工程师的十年听感训练</li>
+            <li>第 5 期：从观众到社群主理人的三年</li>
+            <li>第 4 期：直播镜头外，她们如何准备开场</li>
+          </ul>
+        </article>
+
+        <article class="kiki-topic">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Cdefs%3E%3ClinearGradient id='t2' x1='0' y1='1' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%230d1a2e'/%3E%3Cstop offset='1' stop-color='%234ee0d0' stop-opacity='.65'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='640' height='360' fill='url(%23t2)'/%3E%3Cg stroke='%23ffffff' stroke-opacity='.18' stroke-width='2.4' fill='none'%3E%3Cpath d='M60 280 l120 -120 l90 80 l110 -110 l200 150'/%3E%3C/g%3E%3Ccircle cx='500' cy='90' r='34' fill='%23ffd166' fill-opacity='.85'/%3E%3Cg fill='%23ffffff' fill-opacity='.35'%3E%3Crect x='60' y='310' width='160' height='9' rx='4.5'/%3E%3Crect x='240' y='310' width='90' height='9' rx='4.5'/%3E%3C/g%3E%3C/svg%3E" width="640" height="360" alt="城市探索「夜行地图」企划封面，深蓝夜色与山形灯光折线">
+          <div class="kiki-topic__head">
+            <h3>城市探索 · 夜行地图</h3>
+            <p>以小野猫主播kiki 的夜间视角，记录城市在深夜与清晨之间的真实样貌与人物。</p>
+            <span class="kiki-topic__status"><i></i>更新中 · 已上线 9 期</span>
+          </div>
+          <ul>
+            <li>第 9 期：末班公交上的十位乘客</li>
+            <li>第 8 期：凌晨便利店的常客图谱</li>
+            <li>第 7 期：老城区路灯下的小摊故事</li>
+          </ul>
+        </article>
+
+        <article class="kiki-topic">
+          <img src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23231440'/%3E%3Cg fill='none' stroke-width='2.6' stroke-linecap='round'%3E%3Cpath d='M80 120 q80 -60 160 0 q80 60 160 0 q60 -40 120 -10' stroke='%23ff5fa2'/%3E%3Cpath d='M80 180 q80 -60 160 0 q80 60 160 0 q60 -40 120 -10' stroke='%23ffd166'/%3E%3Cpath d='M80 240 q80 -60 160 0 q80 60 160 0 q60 -40 120 -10' stroke='%234ee0d0'/%3E%3C/g%3E%3Crect x='80' y='292' width='180' height='10' rx='5' fill='%23ffffff' fill-opacity='.32'/%3E%3C/svg%3E" width="640" height="360" alt="创作方法「把话讲清楚」企划封面，三色音波线条与深紫背景">
+          <div class="kiki-topic__head">
+            <h3>创作方法 · 把话讲清楚</h3>
+            <p>面向新手创作者的教程企划，从选题、口播、节奏到设备，把经验拆成可执行的步骤。</p>
+            <span class="kiki-topic__status"><i></i>更新中 · 已上线 12 期</span>
+          </div>
+          <ul>
+            <li>第 12 期：三分钟开场白的四种结构</li>
+            <li>第 11 期：直播间的灯光与背景改造清单</li>
+            <li>第 10 期：如何把评论变成下一期选题</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 品牌深度 -->
+  <section class="kiki-section kiki-deep" id="kikiDeep">
+    <div class="kiki-wrap kiki-deep__inner">
+      <span class="kiki-eyebrow">Insight</span>
+      <h2 class="kiki-h2">品牌深度<span class="kiki-h2__dot">·</span>读懂小野猫主播kiki 的内容逻辑</h2>
+      <p class="kiki-lead">作为持续运营的视频品牌官网，我们相信理解比流量更重要。以下内容从四个角度解析小野猫主播kiki 的内容体系、创作者生态与行业观察，也是对外发布的最完整说明。</p>
+
+      <h3>一、从一场深夜直播，长成一个内容品牌</h3>
+      <p>小野猫主播kiki 最初只是一间不足十平方米的房间、一支入门麦克风和一台旧电脑。没有布景，也没有提词器，直播内容以读信、聊天和翻唱为主。正是这些不够精致的片段，让早期观众感到真实：一个普通人把夜晚留给自己热爱的事情，并且愿意把过程中的犹豫和笨拙一起展示出来。这种真实感成为品牌最早的底色，也决定了后来所有内容的方向——不追求精致到失真的表演，而是保留可被感知的温度。</p>
+      <p>随着观众增长，团队逐渐意识到，零散的直播会随着时间流失，只有被整理、被分类、被再次观看的内容，才真正构成一个品牌的资产。于是官方开始建立回放归档制度：每一期直播在结束后 48 小时内完成母带备份、音量归一化与字幕制作，重要期数追加 4K 修复版。归档不是为了堆量，而是为了让一位新观众能从任意一期进入，并且在观看后理解这个品牌在讲什么。这就是官方网站与普通视频列表的根本区别：前者承担解释的义务，后者只承担展示的功能。</p>
+      <div class="kiki-note">官方内容团队每季度复盘一次归档结构，把过时的分类合并、把被反复观看的母题单独成集。这种持续运营的耐心，比任何一次爆发式传播都更接近品牌真正的成长方式。</div>
+
+      <h3>二、内容生态：主播、创作者与社区的三层结构</h3>
+      <p>小野猫主播kiki 的内容生态由三层构成。核心层是主播本人的原创节目，包括《夜航小野猫》直播、深夜电台、城市探索纪录片与人物访谈，这部分由官方团队直接制作，承担品牌调性与品质标准。中间层是签约与合作的创作者，他们各有擅长的垂直领域，例如音频技术、社群运营、短片摄影与文字脚本，输出的内容与核心层形成互补，让平台不至于只有一种声音。外圈层是社区用户，通过投稿、评论、投票与共创企划参与内容生产，其中优秀作品会被官方推荐到首页焦点位。</p>
+      <p>这种结构的关键在于边界清晰：核心层保证品质与口碑，中间层提供多元视角，外圈层带来活力与新鲜感。三者之间不是简单的流量分配，而是通过明确的投稿规范、审核流程与署名机制建立信任。所有被采用的作品都会标注创作者署名与授权范围，官方的推荐位也不以播放量作为唯一标准，而是综合内容完整度、原创程度与社区反馈。这让“值得信赖”不只是一句口号，而是可以被验证的流程。</p>
+      <p>在行业观察层面，我们注意到视频内容正在从“单条爆款”转向“可被追溯的作品集”。观众越来越愿意为一段能反复观看的内容停留，也更愿意跟随一个稳定的创作者而不是一次热点。小野猫主播kiki 官方网站的定位正是顺应这一变化：以作品集的方式组织内容，以人的方式建立关系，以企业的标准保障品质。</p>
+
+      <h3>三、品质标准：高清、正版与可回看的细节</h3>
+      <p>“高清”在本站不是宣传词，而是一套具体的制作规范。视频上传前统一进行色彩校准，确保不同设备上的肤色与灯光呈现一致；音频采用人声优先的处理链，环境声保留但不压过说话声；字幕由人工校对后再发布，避免错字与时间轴漂移。对于重要的访谈与纪录片，官方会额外制作一章文字版，把关键语句与时间码整理出来，方便观众检索与引用。这些工作不会直接带来播放量，却决定了内容在三年后是否还值得打开。</p>
+      <p>正版与原创是另一条底线。站内所有节目均为官方制作或已获授权的合作内容，转载与二次创作需遵循页面公示的授权说明。我们同样尊重创作者的权益，投稿作品在采用前会与作者确认署名方式与使用范围，不默认买断，也不鼓励搬运。内容生态的健康，建立在对每一份劳动的具体尊重之上，而不是靠一句抽象的“尊重原创”。</p>
+
+      <h3>四、面向未来：把陪伴做成长期的事</h3>
+      <p>直播行业的变化很快，算法、平台与流行语都在更替，但观众对“被认真对待”的需求几乎没有变过。小野猫主播kiki 官方网站希望把陪伴做成一件长期的事：固定时间的直播、稳定的更新节奏、可预期的内容质量，以及在争议出现时坦诚的沟通。我们不承诺每一期都精彩，但承诺每一期都经过认真准备；不承诺满足所有人的喜好，但承诺对每一条合理反馈给出回应。</p>
+      <p>未来一年，官方计划推进三件事：其一，完善创作者扶持体系，增加新人榜与口碑榜的评选透明度；其二，扩大城市探索企划的拍摄范围，把镜头带到更多真实的生活现场；其三，建设更完整的帮助中心与投稿指引，降低新用户与新创作者进入的门槛。这些计划会在企业动态中持续披露进度，也欢迎社区通过投稿入口提出建议。品牌的力量来自持续的积累，而积累的前提，是有人愿意一起把这件事做久。</p>
+    </div>
+  </section>
+
+  <!-- 创作者矩阵 -->
+  <section class="kiki-section" id="kikiAuthors">
+    <div class="kiki-wrap">
+      <span class="kiki-eyebrow">Creators</span>
+      <h2 class="kiki-h2">创作者矩阵<span class="kiki-h2__dot">·</span>与小野猫主播kiki 同行的人</h2>
+      <p class="kiki-lead">平台长期合作的创作者，覆盖声音、影像、文字与社群运营等垂直领域。每位创作者的档案由官方核实并持续更新。</p>
+
+      <div class="kiki-authors" style="margin-top:26px">
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--pink">K</span>
+          <div>
+            <h3>小野猫主播kiki</h3>
+            <div class="kiki-author__field">直播主持 · 深夜电台 · 原创节目</div>
+            <p>品牌主理人，主持《夜航小野猫》系列直播与深夜电台，擅长把日常情绪讲成可被听见的故事。近年转向人物访谈与城市记录，坚持真实表达与长期主义。</p>
+            <div class="kiki-author__nums"><span>作品 <b>486</b></span><span>关注 <b>128万</b></span></div>
+          </div>
+        </article>
+
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--teal">柯</span>
+          <div>
+            <h3>技术顾问 阿柯</h3>
+            <div class="kiki-author__field">音频工程 · 直播技术 · 教程</div>
+            <p>十年音频工程师，负责官方直播间的声学方案与人声处理链。擅长用最低预算解决实际问题，教程风格直接、步骤清晰，是平台技术类内容的主要作者。</p>
+            <div class="kiki-author__nums"><span>作品 <b>62</b></span><span>关注 <b>18.6万</b></span></div>
+          </div>
+        </article>
+
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--violet">林</span>
+          <div>
+            <h3>社区运营 林之</h3>
+            <div class="kiki-author__field">社群运营 · 用户研究 · 行业观察</div>
+            <p>负责社区互动机制与创作者扶持计划设计，长期观察中小创作者成长路径。内容偏向方法论与数据解读，擅长把复杂的运营问题讲成可执行的动作。</p>
+            <div class="kiki-author__nums"><span>作品 <b>74</b></span><span>关注 <b>11.3万</b></span></div>
+          </div>
+        </article>
+
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--yellow">南</span>
+          <div>
+            <h3>影像导演 南寻</h3>
+            <div class="kiki-author__field">纪录片 · 城市影像 · 摄影</div>
+            <p>纪录片导演，参与「夜行地图」城市探索企划的拍摄与剪辑。习惯用长镜头与自然光记录现场，强调不打扰的观察方式，作品多次获得社区口碑推荐。</p>
+            <div class="kiki-author__nums"><span>作品 <b>38</b></span><span>关注 <b>9.7万</b></span></div>
+          </div>
+        </article>
+
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--blue">亭</span>
+          <div>
+            <h3>文字编辑 亭禾</h3>
+            <div class="kiki-author__field">访谈撰稿 · 脚本 · 内容策划</div>
+            <p>负责官方访谈的文字整理与脚本打磨，擅长在大量口语素材中提炼结构。参与「声音里的她」人物专题的采编工作，为每期节目整理时间轴与文字版。</p>
+            <div class="kiki-author__nums"><span>作品 <b>55</b></span><span>关注 <b>7.4万</b></span></div>
+          </div>
+        </article>
+
+        <article class="kiki-author">
+          <span class="kiki-avatar kiki-avatar--green">柚</span>
+          <div>
+            <h3>社区创作者 柚子汽水</h3>
+            <div class="kiki-author__field">生活记录 · 手作 · 投稿作者</div>
+            <p>从观众成长起来的社区创作者，以手作与生活记录短片被推荐至首页。作品节奏舒缓、细节扎实，代表平台新人扶持计划的成长路径，也在持续更新。</p>
+            <div class="kiki-author__nums"><span>作品 <b>29</b></span><span>关注 <b>5.2万</b></span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 口碑 + 榜单 -->
+  <section class="kiki-section kiki-section--tight" id="kikiVoices">
+    <div class="kiki-wrap">
+      <span class="kiki-eyebrow">Community</span>
+      <h2 class="kiki-h2">社区口碑<span class="kiki-h2__dot">·</span>来自观众的真实反馈</h2>
+      <p class="kiki-lead">评论均来自站内用户，内容保留原始语气。官方不对评价做删改，仅对违规内容进行管理，并定期整理口碑摘要供新朋友参考。</p>
+
+      <div class="kiki-voices" style="margin-top:26px">
+        <article class="kiki-voice">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--pink">夏</span><strong>夏夜收音机</strong><span>3 天前</span></div>
+          <p>第一次在官网把第 48 期从头看到尾，字幕做得很细，连停顿都标了时间轴。作为同样做直播的人，能感觉到背后是认真准备过的。</p>
+        </article>
+        <article class="kiki-voice kiki-voice--quote">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--teal">半</span><strong>半杯温水</strong><span>5 天前</span></div>
+          <p>“不是每一期都精彩，但每一期都经过认真准备。”这句写在深度解析里的话，看完那一期深夜电台之后我信了。</p>
+        </article>
+        <article class="kiki-voice">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--violet">阿</span><strong>阿岚的耳机</strong><span>1 周前</span></div>
+          <p>收音指南那期帮我省了不少钱，按官方给的参数调完之后，朋友说我的直播声音突然清楚了。教程是真的能落地。</p>
+        </article>
+        <article class="kiki-voice">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--yellow">夜</span><strong>夜里赶稿的人</strong><span>1 周前</span></div>
+          <p>城市探索那期看哭了，早餐铺老板说他每天三点起床已经二十年。这种内容在别的平台很少见，希望继续拍下去。</p>
+        </article>
+        <article class="kiki-voice">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--blue">小</span><strong>小满同学</strong><span>2 周前</span></div>
+          <p>投了一篇稿子，虽然没被采用，但收到了详细的修改建议，还说明了不采用的原因。这种反馈比直接通过更让我有动力继续做。</p>
+        </article>
+        <article class="kiki-voice">
+          <div class="kiki-voice__head"><span class="kiki-avatar kiki-avatar--green">青</span><strong>青梅气泡水</strong><span>2 周前</span></div>
+          <p>页面加载很快，晚上用手机看回放也不卡，收藏夹还能按专题分类，这点比很多大站做得都细。</p>
+        </article>
+      </div>
+
+      <div class="kiki-board" style="margin-top:34px">
+        <div class="kiki-board__col">
+          <h3>热度榜 <span>本周</span></h3>
+          <ol>
+            <li><b>深夜电台：十二种回答</b><small>41.2万</small></li>
+            <li><b>夜航小野猫 第48期</b><small>86.4万</small></li>
+            <li><b>城市探索：凌晨四点</b><small>19.8万</small></li>
+            <li><b>如何把直播做成节目</b><small>27.6万</small></li>
+          </ol>
+        </div>
+        <div class="kiki-board__col">
+          <h3>新人榜 <span>扶持计划</span></h3>
+          <ol>
+            <li><b>柚子汽水</b><small>+1.2万</small></li>
+            <li><b>拾光收音</b><small>+8600</small></li>
+            <li><b>南桥手记</b><small>+7400</small></li>
+            <li><b>午后旧唱片</b><small>+5100</small></li>
+          </ol>
+        </div>
+        <div class="kiki-board__col">
+          <h3>口碑榜 <span>月度</span></h3>
+          <ol>
+            <li><b>幕后：14 个岗位</b><small>9.6</small></li>
+            <li><b>城市夜行记录</b><small>9.4</small></li>
+            <li><b>社区关系如何经营</b><small>9.3</small></li>
+            <li><b>新人第一次上镜</b><small>9.1</small></li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 动态 + 合作 + FAQ -->
+  <section class="kiki-section" id="kikiNews">
+    <div class="kiki-wrap kiki-two-col">
+      <div>
+        <span class="kiki-eyebrow">News</span>
+        <h2 class="kiki-h2">企业动态<span class="kiki-h2__dot">·</span>官方发布与内容更新</h2>
+        <p class="kiki-lead" style="margin-bottom:24px">小野猫主播kiki 官方网站的运营进展、内容更新与社区计划，均在此同步披露。</p>
+        <div class="kiki-timeline">
+          <div class="kiki-timeline__item">
+            <div class="kiki-timeline__date">2026 / 11 / 22</div>
+            <h3>第 48 期直播回放上线，新增文字版时间轴</h3>
+            <p>高清与 4K 修复版本同步开放，官方文字版梳理了全部十七个提问的核心观点，可在视频页下方展开查看。</p>
+          </div>
+          <div class="kiki-timeline__item">
+            <div class="kiki-timeline__date">2026 / 11 / 15</div>
+            <h3>创作者扶持计划第二季启动</h3>
+            <p>新增新人榜与口碑榜双通道评选，投稿审核周期缩短至七个工作日，并公开每一轮评选的评分维度。</p>
+          </div>
+          <div class="kiki-timeline__item">
+            <div class="kiki-timeline__date">2026 / 11 / 06</div>
+            <h3>「夜行地图」城市探索企划完成第九期拍摄</h3>
+            <p>本期记录末班公交与夜班乘客，拍摄期间未打扰被记录者的正常生活，全部出镜均获得本人同意。</p>
+          </div>
+          <div class="kiki-timeline__item">
+            <div class="kiki-timeline__date">2026 / 10 / 28</div>
+            <h3>帮助中心更新投稿与授权说明</h3>
+            <p>新增关于二次创作、引用规范与署名方式的常见问题，减少创作者在投稿前的疑问与反复沟通。</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="kiki-eyebrow">Partners</span>
+        <h2 class="kiki-h2">合作与支持</h2>
+        <p class="kiki-lead" style="margin-bottom:20px">与内容制作、社区公益和技术服务领域的伙伴长期协作，共同维护品质标准。</p>
+        <div class="kiki-partners">
+          <div class="kiki-partner"><span class="kiki-partner__logo" style="background:linear-gradient(140deg,#ff9cc4,#ff5fa2)">声</span><div><b>声场实验室</b><small>音频技术支持</small></div></div>
+          <div class="kiki-partner"><span class="kiki-partner__logo" style="background:linear-gradient(140deg,#9df3ea,#4ee0d0)">影</span><div><b>影行者影像</b><small>纪录片联合制作</small></div></div>
+          <div class="kiki-partner"><span class="kiki-partner__logo" style="background:linear-gradient(140deg,#cbb9ff,#a78bfa)">青</span><div><b>青灯公益</b><small>社区公益合作</small></div></div>
+          <div class="kiki-partner"><span class="kiki-partner__logo" style="background:linear-gradient(140deg,#ffe6a6,#ffd166)">城</span><div><b>城市夜读会</b><small>线下活动场地</small></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 投稿 + FAQ -->
+  <section class="kiki-section kiki-section--tight" id="kikiFaq">
+    <div class="kiki-wrap">
+      <div class="kiki-submit" style="margin-bottom:40px">
+        <div>
+          <h2>带着你的作品来</h2>
+          <p>小野猫主播kiki 官方平台长期开放投稿，欢迎生活记录、手作、短文、短片与声音作品。所有投稿都会得到人工阅读与反馈，采用后与作者确认署名与授权范围。</p>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="kiki-btn kiki-btn--primary" data-kiki-open="submit">开始投稿</button>
+          <button class="kiki-btn kiki-btn--ghost" data-kiki-open="report">问题反馈</button>
+        </div>
+      </div>
+
+      <span class="kiki-eyebrow">FAQ</span>
+      <h2 class="kiki-h2">帮助中心<span class="kiki-h2__dot">·</span>常见问题</h2>
+      <p class="kiki-lead" style="margin-bottom:22px">关于观看、投稿、版权与社区规则的常见问题，若仍有疑问可通过反馈入口联系我们。</p>
+
+      <div class="kiki-faq">
+        <details open>
+          <summary>小野猫主播kiki 的直播回放多久更新一次？</summary>
+          <div class="kiki-faq__body">每场直播结束后 48 小时内完成母带备份与基础处理并上线，重要期数会在 5 个工作日内追加 4K 修复版与人工字幕。所有回放统一归档在视频精选与专题页中。</div>
+        </details>
+        <details>
+          <summary>官网的内容可以转载或二次创作吗？</summary>
+          <div class="kiki-faq__body">站内节目均为官方制作或已获授权。个人非商业引用需标注来源与链接，并保留完整语境；商业用途与大规模二次创作请先通过反馈入口提交申请，我们会明确授权范围。</div>
+        </details>
+        <details>
+          <summary>投稿有题材和时长限制吗？</summary>
+          <div class="kiki-faq__body">没有强制时长限制，建议短片在 3 至 20 分钟之间。题材以生活记录、手作、人物、城市与声音为主，要求原创且画音清晰。文字作品建议 1500 字以上，并附上创作说明。</div>
+        </details>
+        <details>
+          <summary>投稿后多久能收到回复？</summary>
+          <div class="kiki-faq__body">通常在七个工作日内完成初审。无论是否采用都会给出反馈，未采用的稿件会说明主要改进方向，作者可在修改后再次投稿，不限制次数。</div>
+        </details>
+        <details>
+          <summary>为什么有些视频提供纯音频版本？</summary>
+          <div class="kiki-faq__body">深夜电台与部分访谈以声音为主要载体，官方额外提供纯音频版本，方便通勤与睡前收听。音轨与视频音源一致，均经过人声优化处理。</div>
+        </details>
+        <details>
+          <summary>如何参与社区的投票与共创企划？</summary>
+          <div class="kiki-faq__body">共创企划开启期间会在公告条与专题页公布参与方式，注册用户可直接在页面内提交作品或参与投票。投票结果与入选名单会在企业动态中公开。</div>
+        </details>
+        <details>
+          <summary>页面上的收藏和点赞会保存吗？</summary>
+          <div class="kiki-faq__body">当前版本的收藏与点赞保存在本地浏览环境中，用于标记你关注的内容。清除浏览器数据后会重置，后续版本将支持账号同步。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="kiki-footer">
+  <div class="kiki-wrap">
+    <div class="kiki-footer__grid">
+      <div>
+        <div class="kiki-brand" style="margin-bottom:14px">
+          <span class="kiki-brand__mark">K</span>
+          <span class="kiki-brand__text">
+            <span class="kiki-brand__name">小野猫主播kiki</span>
+            <span class="kiki-brand__sub">OFFICIAL VIDEO</span>
+          </span>
+        </div>
+        <p>小野猫主播kiki 官方网站，是一个以原创高清视频为核心的内容品牌与创作者社区。我们持续运营，坚持真实、温暖与品质，为创作者与企业搭建值得信赖的内容生态。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <ul>
+          <li><a href="#kikiSpotlight">焦点内容</a></li>
+          <li><a href="#kikiVideos">视频精选</a></li>
+          <li><a href="#kikiTopics">专题企划</a></li>
+          <li><a href="#kikiDeep">品牌深度</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>社区与帮助</h4>
+        <ul>
+          <li><a href="#kikiAuthors">创作者矩阵</a></li>
+          <li><a href="#kikiVoices">社区口碑</a></li>
+          <li><a href="#kikiNews">企业动态</a></li>
+          <li><a href="#kikiFaq">帮助中心</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>官方信息</h4>
+        <ul>
+          <li>内容合作：官方商务渠道</li>
+          <li>投稿反馈：页面内表单</li>
+          <li>运营时间：每日 10:00–24:00</li>
+          <li>版权说明：详见帮助中心</li>
+        </ul>
+      </div>
+    </div>
+    <div class="kiki-footer__bottom">
+      <span>© 2026 小野猫主播kiki 官方网站 · 版权所有 · 持续运营中</span>
+      <span>原创内容 · 正版授权 · 高清呈现</span>
+    </div>
+  </div>
+</footer>
+
+<button class="kiki-top" id="kikiTopBtn" aria-label="回到顶部">↑</button>
+<div class="kiki-toast" id="kikiToast" role="status" aria-live="polite"></div>
+
+<div class="kiki-modal" id="kikiModal" role="dialog" aria-modal="true" aria-labelledby="kikiModalTitle">
+  <div class="kiki-modal__box">
+    <button class="kiki-modal__close" id="kikiModalClose" aria-label="关闭">×</button>
+    <h3 id="kikiModalTitle">投稿入口</h3>
+    <p id="kikiModalDesc">填写以下信息，官方内容团队会在七个工作日内回复。</p>
+    <form class="kiki-form" id="kikiForm">
+      <label>昵称 / 创作者名
+        <input type="text" name="nickname" placeholder="例如：柚子汽水" required>
+      </label>
+      <label>联系方式
+        <input type="text" name="contact" placeholder="邮箱或常用联系方式" required>
+      </label>
+      <label>作品简介
+        <textarea name="intro" rows="3" placeholder="简单说明题材、时长与创作背景"></textarea>
+      </label>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="kiki-btn kiki-btn--primary" type="submit">提交</button>
+        <button class="kiki-btn kiki-btn--ghost" type="button" id="kikiFormCancel">取消</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- 公告轮播 ---------- */
+  var track = document.getElementById("kikiAnnounceTrack");
+  if(track){
+    var items = track.querySelectorAll(".kiki-announce__item");
+    var ai = 0;
+    if(items.length > 1){
+      setInterval(function(){
+        items[ai].classList.remove("is-on");
+        ai = (ai + 1) % items.length;
+        items[ai].classList.add("is-on");
+      }, 4600);
+    }
+  }
+
+  /* ---------- 移动端导航 ---------- */
+  var burger = document.getElementById("kikiBurger");
+  var mnav = document.getElementById("kikiMobileNav");
+  if(burger && mnav){
+    burger.addEventListener("click", function(){
+      var open = mnav.classList.toggle("is-open");
+      burger.setAttribute("aria-expanded", open ? "true" : "false");
+      burger.textContent = open ? "×" : "☰";
+    });
+    mnav.addEventListener("click", function(e){
+      if(e.target.tagName === "A"){
+        mnav.classList.remove("is-open");
+        burger.setAttribute("aria-expanded","false");
+        burger.textContent = "☰";
+      }
+    });
+  }
+
+  /* ---------- Toast ---------- */
+  var toast = document.getElementById("kikiToast");
+  var toastTimer = null;
+  function showToast(msg){
+    if(!toast) return;
+    toast.textContent = msg;
+    toast.classList.add("is-on");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){ toast.classList.remove("is-on"); }, 2200);
+  }
+
+  /* ---------- 搜索提示 ---------- */
+  var searchInput = document.getElementById("kikiSearchInput");
+  var searchTip = document.getElementById("kikiSearchTip");
+  var searchData = [
+    {k:"夜航", t:"《夜航小野猫》第 48 期 · 直播回放"},
+    {k:"电台", t:"深夜电台：关于坚持的十二种回答"},
+    {k:"收音", t:"设备不贵也能出好声音 · 教程"},
+    {k:"城市", t:"城市探索 · 夜行地图企划"},
+    {k:"作者", t:"创作者矩阵：6 位长期同行者"},
+    {k:"投稿", t:"投稿入口与授权说明"}
+  ];
+  if(searchInput && searchTip){
+    searchInput.addEventListener("input", function(){
+      var q = searchInput.value.trim();
+      if(!q){
+        searchTip.classList.remove("is-open");
+        return;
+      }
+      var hits = searchData.filter(function(item){
+        return item.t.indexOf(q) > -1 || item.k.indexOf(q) > -1;
+      });
+      if(hits.length){
+        searchTip.innerHTML = "找到 <strong>" + hits.length + "</strong> 条相关内容：<br>" +
+          hits.slice(0,3).map(function(h){ return "· " + h.t; }).join("<br>");
+      }else{
+        searchTip.innerHTML = "暂无匹配条目，试试「夜航」「城市」「投稿」等关键词。";
+      }
+      searchTip.classList.add("is-open");
+    });
+    searchInput.addEventListener("keydown", function(e){
+      if(e.key === "Enter"){
+        e.preventDefault();
+        var q = searchInput.value.trim();
+        showToast(q ? "已记录搜索：" + q : "请输入关键词");
+        searchTip.classList.remove("is-open");
+      }
+    });
+    document.addEventListener("click", function(e){
+      if(!searchTip.contains(e.target) && e.target !== searchInput){
+        searchTip.classList.remove("is-open");
+      }
+    });
+  }
+
+  /* ---------- 点赞 / 收藏 ---------- */
+  document.addEventListener("click", function(e){
+    var likeBtn = e.target.closest(".kiki-like");
+    if(likeBtn){
+      var base = parseInt(likeBtn.getAttribute("data-kiki-like") || "100", 10);
+      var on = likeBtn.classList.toggle("is-on");
+      var b = likeBtn.querySelector("b");
+      if(b){
+        b.textContent = on ? String(base + 1) : String(base);
+      }
+      likeBtn.firstChild.textContent = on ? "♥ 已赞 " : "♡ 点赞 ";
+      showToast(on ? "已点赞，感谢支持" : "已取消点赞");
+      return;
+    }
+    var favBtn = e.target.closest(".kiki-fav");
+    if(favBtn){
+      var favOn = favBtn.classList.toggle("is-on");
+      favBtn.textContent = favOn ? "★ 已收藏" : "☆ 收藏";
+      showToast(favOn ? "已加入收藏" : "已取消收藏");
+      return;
+    }
+  });
+
+  /* ---------- 复制链接 ---------- */
+  document.addEventListener("click", function(e){
+    var copyBtn = e.target.closest("[data-kiki-copy]");
+    if(!copyBtn) return;
+    var key = copyBtn.getAttribute("data-kiki-copy");
+    var text = "小野猫主播kiki 官方网站 · 内容编号 " + key;
+    function fallback(){
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try{ document.execCommand("copy"); }catch(err){}
+      document.body.removeChild(ta);
+      showToast("链接已复制，欢迎分享");
+    }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(function(){
+        showToast("链接已复制，欢迎分享");
+      }).catch(fallback);
+    }else{
+      fallback();
+    }
+  });
+
+  /* ---------- 数字滚动 ---------- */
+  var counters = document.querySelectorAll("[data-kiki-count]");
+  var cObserver = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      if(el.dataset.done) return;
+      el.dataset.done = "1";
+      var target = parseInt(el.getAttribute("data-kiki-count"), 10) || 0;
+      var small = el.querySelector("small");
+      var suffix = small ? small.outerHTML : "";
+      var start = performance.now();
+      var dur = 1300;
+      function step(now){
+        var p = Math.min((now - start) / dur, 1);
+        var val = Math.round(target * (1 - Math.pow(1 - p, 3)));
+        el.innerHTML = val + suffix;
+        if(p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    });
+  }, {threshold: .4});
+  counters.forEach(function(c){ cObserver.observe(c); });
+
+  /* ---------- 弹窗 ---------- */
+  var modal = document.getElementById("kikiModal");
+  var modalTitle = document.getElementById("kikiModalTitle");
+  var modalDesc = document.getElementById("kikiModalDesc");
+  var form = document.getElementById("kikiForm");
+  var formCancel = document.getElementById("kikiFormCancel");
+  var modalClose = document.getElementById("kikiModalClose");
+
+  function openModal(type){
+    if(!modal) return;
+    if(type === "submit"){
+      modalTitle.textContent = "投稿入口";
+      modalDesc.textContent = "填写以下信息，官方内容团队会在七个工作日内回复。";
+      if(form) form.style.display = "flex";
+    }else if(type === "share"){
+      modalTitle.textContent = "分享给朋友";
+      modalDesc.textContent = "可将本期内容分享至微信、微博、QQ 或复制链接，分享时请保留官方来源说明。";
+      if(form) form.style.display = "none";
+    }else{
+      modalTitle.textContent = "问题反馈";
+      modalDesc.textContent = "遇到播放异常、内容问题或授权咨询，请通过帮助中心提交，我们会在两个工作日内处理。";
+      if(form) form.style.display = "none";
+    }
+    modal.classList.add("is-open");
+  }
+  function closeModal(){
+    if(modal) modal.classList.remove("is-open");
+  }
+  document.addEventListener("click", function(e){
+    var opener = e.target.closest("[data-kiki-open]");
+    if(opener){
+      openModal(opener.getAttribute("data-kiki-open"));
+    }
+  });
+  if(modalClose) modalClose.addEventListener("click", closeModal);
+  if(formCancel) formCancel.addEventListener("click", closeModal);
+  if(modal){
+    modal.addEventListener("click", function(e){
+      if(e.target === modal) closeModal();
+    });
+  }
+  document.addEventListener("keydown", function(e){
+    if(e.key === "Escape") closeModal();
+  });
+  if(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      closeModal();
+      showToast("投稿信息已提交，感谢你的信任");
+      form.reset();
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var topBtn = document.getElementById("kikiTopBtn");
+  window.addEventListener("scroll", function(){
+    if(window.scrollY > 600){
+      topBtn.classList.add("is-on");
+    }else{
+      topBtn.classList.remove("is-on");
+    }
+  }, {passive:true});
+  if(topBtn){
+    topBtn.addEventListener("click", function(){
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+})();
+</script>
+</body>
+  </html>
